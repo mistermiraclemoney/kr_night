@@ -4,6 +4,8 @@
   "private": true,
   "description": "KR NIGHT mobile app shell powered by Capacitor.",
   "scripts": {
+    "build": "node scripts/prepare-web.mjs",
+    "start": "node server.js",
     "prepare:web": "node scripts/prepare-web.mjs",
     "cap:copy": "pnpm run prepare:web && cap copy",
     "cap:sync": "pnpm run prepare:web && cap sync",
