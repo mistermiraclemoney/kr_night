@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>KR NIGHT</title>
+    <meta
+      name="description"
+      content="KR NIGHT - Tonight in S. Korea. Clubs, bars, events, and coupons."
+    />
+    <meta name="theme-color" content="#050506" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="KR NIGHT" />
+    <link rel="apple-touch-icon" href="assets/kr-night-app-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIINfQfN0n7mmKtf5pclnS9i6POGODHc7fs="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="app-statusbar" aria-hidden="true">
+        <span id="statusTime">16:53</span>
+        <div class="status-icons">
+          <span class="signal-bars"></span>
+          <span class="wifi-icon"></span>
+          <span class="battery-icon"></span>
+        </div>
+      </div>
+      <section class="screen home-screen active" id="screen-home" aria-labelledby="homeTitle">
+        <header class="home-header">
+          <div class="home-searchbar">
+            <img src="assets/kr-night-app-icon.png" alt="KR NIGHT" />
+            <button class="home-search-pill" type="button" data-screen="hot">
+              <span aria-hidden="true"></span>
+              Search clubs, bars, areas
+            </button>
+            <button class="home-language-button" type="button" id="homeLanguageButton">EN</button>
+            <button class="home-clock-button" type="button" aria-label="Tonight history"></button>
+            <button class="home-bell-button" type="button" aria-label="Alerts"></button>
+          </div>
+          <div class="home-location-row">
+            <button type="button" data-screen="hot">
+              <span class="pin-dot" aria-hidden="true"></span>
+              Seoul
+            </button>
+            <button type="button" data-screen="hot">Near me</button>
+          </div>
+        </header>
+
+        <section class="home-spotlight" aria-label="KR NIGHT spotlight">
+          <button class="spotlight-card spotlight-primary" type="button" data-screen="hot">
+            <span>Tonight Pulse</span>
+            <strong>Where Korea goes out tonight.</strong>
+            <em>14 spots · 7 areas · Live map</em>
+          </button>
+          <button class="spotlight-card spotlight-hongdae" type="button" data-screen="hot">
+            <span>Hongdae is heating up</span>
+            <strong>The Henz → Club FF</strong>
+            <em>132 watching</em>
+          </button>
+          <button class="spotlight-card spotlight-itaewon" type="button" data-screen="hot">
+            <span>Itaewon after midnight</span>
+            <strong>Cakeshop → Faust</strong>
+            <em>118 watching</em>
+          </button>
+        </section>
+
+        <section class="home-action-grid" aria-label="KR NIGHT shortcuts">
+          <button type="button" data-screen="hot"><span class="shortcut-icon hot-shortcut"></span>Hot Now</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon route-shortcut"></span>Route</button>
+          <button type="button" data-screen="social"><span class="shortcut-icon social-shortcut"></span>Social</button>
+          <button type="button" data-screen="game"><span class="shortcut-icon game-shortcut"></span>Games</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon club-shortcut"></span>Clubs</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon bar-shortcut"></span>Bars</button>
+          <button type="button" data-screen="profile"><span class="shortcut-icon point-shortcut"></span>Points</button>
+          <button type="button" data-screen="profile"><span class="shortcut-icon guest-shortcut"></span>Guestlist</button>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeNewsTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Tonight news</p>
+              <h2 id="homeNewsTitle">Weekend signals</h2>
+            </div>
+            <button type="button" data-screen="hot">View all</button>
+          </div>
+          <div class="news-banner-row">
+            <button class="news-banner news-banner-main" type="button" data-screen="hot">
+              <span>Beta open</span>
+              <strong>Hongdae route is live tonight</strong>
+              <em>The Henz Club · Club FF · late food</em>
+            </button>
+            <button class="news-banner news-banner-alt" type="button" data-screen="hot">
+              <span>Coming soon</span>
+              <strong>First guestlist partners</strong>
+              <em>Partner spots will appear here</em>
+            </button>
+            <button class="news-banner news-banner-gold" type="button" data-screen="hot">
+              <span>Editor pick</span>
+              <strong>Itaewon underground weekend</strong>
+              <em>Cakeshop · Faust · late bars</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeAreaTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Tonight areas</p>
+              <h2 id="homeAreaTitle">Where to go?</h2>
+            </div>
+            <button type="button" data-screen="hot">Open map</button>
+          </div>
+          <div class="area-grid">
+            <button type="button" data-screen="hot"><span>132</span>Hongdae<em>Hot</em></button>
+            <button type="button" data-screen="hot"><span>118</span>Itaewon<em>Live</em></button>
+            <button type="button" data-screen="hot"><span>76</span>Apgujeong<em>Route</em></button>
+            <button type="button" data-screen="hot"><span>84</span>Gangnam<em>Late</em></button>
+            <button type="button" data-screen="hot"><span>67</span>Seongsu<em>Chill</em></button>
+            <button type="button" data-screen="hot"><span>91</span>Euljiro<em>Local</em></button>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeRouteTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Today's route</p>
+              <h2 id="homeRouteTitle">Hongdae Tonight</h2>
+            </div>
+            <button type="button" data-screen="hot">View spots</button>
+          </div>
+          <div class="route-card">
+            <div class="route-card-top">
+              <div>
+                <strong>Start easy. Dance late. End local.</strong>
+                <span>Recommended by KR NIGHT</span>
+              </div>
+              <span class="route-count">4 stops</span>
+            </div>
+            <div class="route-timeline">
+              <article>
+                <time>9:00 PM</time>
+                <div><h3>Casual drinks</h3><p>Warm up near Sangsu or Hongdae main street.</p></div>
+              </article>
+              <article>
+                <time>11:30 PM</time>
+                <div><h3>The Henz Club</h3><p>Hip-hop, trap, and a late street-fashion crowd.</p></div>
+              </article>
+              <article>
+                <time>1:30 AM</time>
+                <div><h3>Club FF</h3><p>Live club energy that turns louder later.</p></div>
+              </article>
+              <article>
+                <time>3:00 AM</time>
+                <div><h3>Late food</h3><p>Finish with food, beer, or a quieter second round.</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeStoresTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">KR picks</p>
+              <h2 id="homeStoresTitle">Recommended tonight</h2>
+            </div>
+            <button type="button" data-screen="hot">View all</button>
+          </div>
+          <div class="pick-grid">
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art cakeshop-art"></span>
+              <strong>Cakeshop</strong>
+              <em>4.8 · Underground · Itaewon</em>
+            </button>
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art henz-art"></span>
+              <strong>The Henz Club</strong>
+              <em>4.7 · Hip-hop · Hongdae</em>
+            </button>
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art chamber-art"></span>
+              <strong>Le Chamber</strong>
+              <em>4.8 · Cocktails · Gangnam</em>
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen social-screen" id="screen-social" aria-labelledby="socialTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow">Live lounge</p>
+            <h1 id="socialTitle">Social</h1>
+          </div>
+          <span class="coming-pill">Beta</span>
+        </header>
+        <section class="lounge-hero" aria-labelledby="loungeTitle">
+          <div>
+            <p class="eyebrow">Checked in lounge</p>
+            <h2 id="loungeTitle">The Henz Club</h2>
+            <p>Hongdae · 64 inside now</p>
+          </div>
+          <span class="lounge-live">Live</span>
+        </section>
+
+        <section class="lounge-status" aria-label="Lounge status">
+          <article>
+            <span>Entered</span>
+            <strong>11:42 PM</strong>
+          </article>
+          <article>
+            <span>Auto exit</span>
+            <strong>4:30 AM</strong>
+          </article>
+          <article>
+            <span>Points</span>
+            <strong>+120</strong>
+          </article>
+        </section>
+
+        <section class="friends-page" aria-labelledby="friendsTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Friends page</p>
+              <h2 id="friendsTitle">Tonight friends</h2>
+            </div>
+            <button type="button">Add</button>
+          </div>
+          <label class="friend-search">
+            <span>User ID search</span>
+            <div class="friend-search-row">
+              <input type="search" id="friendSearchInput" placeholder="Search @mike, @ana, @jin..." />
+              <button type="button" id="friendSearchButton">Find</button>
+            </div>
+          </label>
+          <div class="friend-search-results" id="friendSearchResults" aria-live="polite"></div>
+          <div class="friend-status-list" aria-label="Friend status">
+            <article>
+              <span class="friend-avatar">M</span>
+              <div>
+                <strong>Mike</strong>
+                <p>📍 Henz Club</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Mike">Chat</button>
+                <button type="button" data-friend-snap="Mike">Snap</button>
+              </div>
+            </article>
+            <article>
+              <span class="friend-avatar">A</span>
+              <div>
+                <strong>Ana</strong>
+                <p>📍 Cakeshop</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Ana">Chat</button>
+                <button type="button" data-friend-snap="Ana">Snap</button>
+              </div>
+            </article>
+            <article>
+              <span class="friend-avatar">J</span>
+              <div>
+                <strong>Jin</strong>
+                <p>Starting in Seongsu</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Jin">Chat</button>
+                <button type="button" data-friend-snap="Jin">Snap</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="snap-row" aria-labelledby="snapTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Disappearing snaps</p>
+              <h2 id="snapTitle">Tonight only</h2>
+            </div>
+          </div>
+          <div class="snap-card-row">
+            <button type="button">
+              <span>12s</span>
+              <strong>Mike</strong>
+              <em>Henz floor check</em>
+            </button>
+            <button type="button">
+              <span>8s</span>
+              <strong>Ana</strong>
+              <em>Cakeshop line</em>
+            </button>
+            <button type="button">
+              <span>New</span>
+              <strong>You</strong>
+              <em>Send a snap</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="lounge-chat" aria-labelledby="chatTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Open room</p>
+              <h2 id="chatTitle">Henz Lounge</h2>
+            </div>
+            <button type="button">Leave</button>
+          </div>
+          <div class="chat-thread" aria-label="Lounge messages">
+            <article class="chat-bubble incoming">
+              <strong>Mike</strong>
+              <p>Anyone going upstairs after 1?</p>
+              <span>12:18 AM</span>
+            </article>
+            <article class="chat-bubble outgoing">
+              <strong>You</strong>
+              <p>Maybe Club FF after this.</p>
+              <span>12:20 AM</span>
+            </article>
+            <article class="chat-bubble incoming">
+              <strong>Ana</strong>
+              <p>DJ set is starting now.</p>
+              <span>12:21 AM</span>
+            </article>
+          </div>
+          <label class="chat-composer">
+            <span>Message the lounge</span>
+            <input type="text" placeholder="Say something..." />
+            <button type="button">Send</button>
+          </label>
+        </section>
+
+        <section class="home-section" aria-labelledby="nearbyLoungeTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Nearby lounges</p>
+              <h2 id="nearbyLoungeTitle">Join with check-in</h2>
+            </div>
+          </div>
+          <div class="lounge-list">
+            <button type="button">
+              <span class="lounge-art hongdae-lounge-art"></span>
+              <strong>Club FF</strong>
+              <em>Hongdae · 38 inside</em>
+            </button>
+            <button type="button">
+              <span class="lounge-art itaewon-lounge-art"></span>
+              <strong>Cakeshop</strong>
+              <em>Itaewon · 51 inside</em>
+            </button>
+            <button type="button">
+              <span class="lounge-art apgu-lounge-art"></span>
+              <strong>Times Apgujeong</strong>
+              <em>Apgujeong · 29 inside</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="lounge-rules" aria-labelledby="loungeRulesTitle">
+          <p class="eyebrow">Lounge expires</p>
+          <h2 id="loungeRulesTitle">Night session rules</h2>
+          <div>
+            <span>Manual leave anytime</span>
+            <span>Auto clear after closing</span>
+            <span>Location check after exit</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen map-screen" id="screen-hot" aria-label="KR NIGHT Hot Now map">
+        <div class="map-canvas sheet-mid">
+          <div id="leafletMap" class="real-map" aria-label="Interactive Seoul map"></div>
+
+          <section class="map-search-panel" aria-label="Search and filters">
+            <label class="search">
+              <span aria-hidden="true"></span>
+              <input id="searchInput" type="search" placeholder="Where are you going tonight?" />
+            </label>
+            <div class="map-chip-row" role="tablist" aria-label="Nearby districts">
+              <button class="nearby-chip active" type="button" data-district="Seoul">All nearby</button>
+              <button class="nearby-chip" type="button" data-district="Seongsu">Seongsu</button>
+              <button class="nearby-chip" type="button" data-district="Hongdae">Hongdae</button>
+              <button class="nearby-chip" type="button" data-district="Itaewon">Itaewon</button>
+              <button class="nearby-chip" type="button" data-district="Apgujeong">Apgujeong</button>
+            </div>
+          </section>
+
+          <div class="map-markers" id="mapMarkers"></div>
+
+          <aside class="map-tools" aria-label="Map tools">
+            <button id="mapStyleButton" type="button" aria-label="Switch map style"></button>
+            <button id="mapLocateButton" type="button" aria-label="Center Seoul nightlife map"></button>
+          </aside>
+
+          <button class="nearby-focus-button" id="nearbyFocusButton" type="button">Near me</button>
+
+          <section class="map-bottom-sheet" aria-labelledby="mapSheetTitle">
+            <button class="sheet-handle" id="sheetHandle" type="button" aria-label="Show or hide nightlife list"></button>
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow" id="mapSheetEyebrow">Near you tonight</p>
+                <h2 id="mapSheetTitle">Nearby picks</h2>
+              </div>
+              <span class="live-dot">Verified</span>
+            </div>
+            <div class="filter-row sheet-filter-row" role="tablist" aria-label="Selected area filters">
+              <button class="filter-pill active" type="button" data-filter="all">All</button>
+              <button class="filter-pill" type="button" data-filter="club">Clubs</button>
+              <button class="filter-pill" type="button" data-filter="bar">Bars</button>
+              <button class="filter-pill" type="button" data-filter="lounge">Lounges</button>
+              <button class="filter-pill" type="button" data-filter="foreigner">Foreigner OK</button>
+            </div>
+            <div class="nearby-summary">
+              <span id="nearbySummaryLabel">Seongsu mock location</span>
+              <span>Updated around tonight</span>
+            </div>
+            <div class="venue-list compact" id="venueList"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen game-screen" id="screen-game" aria-labelledby="gameTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow">Metaverse club layer</p>
+            <h1 id="gameTitle">Game</h1>
+          </div>
+          <span class="coming-pill">Concept</span>
+        </header>
+        <section class="game-hero">
+          <p class="eyebrow">Check-in unlock</p>
+          <h2>Games that make the room less awkward.</h2>
+          <p>Matching, drinking games, and ice breakers should unlock only inside partner venues later.</p>
+        </section>
+        <div class="game-grid" aria-label="Game concepts">
+          <article>
+            <span class="game-chip">01</span>
+            <h3>Match Nearby</h3>
+            <p>Tinder-style matching for people checked into the same venue.</p>
+          </article>
+          <article>
+            <span class="game-chip">02</span>
+            <h3>Drink Roulette</h3>
+            <p>Simple group challenges, loser buys the next round.</p>
+          </article>
+          <article>
+            <span class="game-chip">03</span>
+            <h3>Ice Break Cards</h3>
+            <p>Fast prompts for new groups, exchange students, and solo travelers.</p>
+          </article>
+          <article>
+            <span class="game-chip">04</span>
+            <h3>VIP Room</h3>
+            <p>Member-only perks, queue access, table requests, and point rewards.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-coupons" aria-labelledby="couponsTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow">Benefits</p>
+            <h1>Coupons</h1>
+          </div>
+          <span class="coming-pill">Beta</span>
+        </header>
+        <section class="coupon-hero">
+          <p class="eyebrow">Coming soon</p>
+          <h2>Guestlists and perks, soon.</h2>
+          <p>For now, KR NIGHT will show curated picks first. Real partner coupons come after store verification.</p>
+        </section>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KR NIGHT benefits</p>
+            <h2 id="couponsTitle">Coupons</h2>
+          </div>
+        </div>
+        <div class="coupon-list" id="couponList"></div>
+      </section>
+
+      <section class="screen" id="screen-events" aria-labelledby="eventsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DJs, parties, guestlists</p>
+            <h2 id="eventsTitle">Events</h2>
+          </div>
+        </div>
+        <div class="event-list" id="eventList"></div>
+      </section>
+
+      <section class="screen profile-screen" id="screen-profile" aria-labelledby="profileTitle">
+        <header class="profile-hero">
+          <div class="profile-person">
+            <img src="assets/kr-night-app-icon.png" alt="KR NIGHT" />
+            <div>
+              <p class="eyebrow">Member profile</p>
+              <h1 id="profileTitle">Guest</h1>
+              <p class="profile-subline" id="profileUserId">@krguest</p>
+            </div>
+          </div>
+          <button type="button" class="save-modal-button" id="profileTierButton">Free</button>
+        </header>
+
+        <section class="account-panel" aria-labelledby="accountPanelTitle">
+          <div class="account-panel-copy">
+            <p class="eyebrow">Account</p>
+            <h2 id="accountPanelTitle">Ready for real check-in</h2>
+            <p id="authStatusText">Create a local beta account now. Real Kakao, Apple, Google, LINE, and NAVER login can be connected later with production keys.</p>
+          </div>
+          <div class="account-panel-actions">
+            <button type="button" class="primary-button" id="openLoginButton">Create account</button>
+            <label class="share-toggle">
+              <input type="checkbox" id="locationShareToggle" checked />
+              <span>Share my live venue with friends</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="checked-in-panel" aria-labelledby="checkinStatusTitle">
+          <div>
+            <p class="eyebrow">Tonight status</p>
+            <h2 id="checkinStatusTitle">Not checked in</h2>
+            <p id="checkinStatusMeta">Open a venue and use the QR check-in flow to activate lounge access and points.</p>
+          </div>
+          <button type="button" class="secondary-button" id="leaveVenueButton">Leave venue</button>
+        </section>
+
+        <section class="membership-pass" aria-labelledby="membershipTitle">
+          <div class="membership-copy">
+            <p class="eyebrow">KR NIGHT membership</p>
+            <h2 id="membershipTitle">Entry QR Pass</h2>
+            <p>Scan this at partner doors to check in, join the lounge, and collect Night Points.</p>
+            <div class="membership-tags" aria-label="Membership benefits">
+              <span>Door check-in</span>
+              <span>Auto lounge</span>
+              <span>Point earn</span>
+            </div>
+          </div>
+          <div class="qr-card" aria-label="Member QR code preview">
+            <span class="qr-code" id="profileQrCode" aria-hidden="true"></span>
+            <strong id="profileQrValue">KR-GUEST-0000</strong>
+            <em id="profileQrMeta">Refreshes every 60s</em>
+          </div>
+        </section>
+
+        <section class="language-panel" aria-labelledby="languagePanelTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Language</p>
+              <h2 id="languagePanelTitle">App language</h2>
+            </div>
+          </div>
+          <div class="language-switcher" role="tablist" aria-label="App language">
+            <button type="button" class="language-chip active" data-language="en">EN</button>
+            <button type="button" class="language-chip" data-language="ko">KO</button>
+            <button type="button" class="language-chip" data-language="ja">JA</button>
+            <button type="button" class="language-chip" data-language="zh">中文</button>
+          </div>
+        </section>
+
+        <section class="vip-lane" aria-labelledby="vipLaneTitle">
+          <div>
+            <p class="eyebrow">VIP lane</p>
+            <h2 id="vipLaneTitle">Skip-line access later</h2>
+            <p>VIP members can show a verified QR for priority entry at selected partner venues.</p>
+          </div>
+          <span>Locked</span>
+        </section>
+
+        <div class="profile-wallet">
+          <button type="button">
+            <strong>Pass Credit</strong>
+            <span id="walletPassCredit">0</span>
+          </button>
+          <button type="button">
+            <strong>Night Points</strong>
+            <span id="walletNightPoints">100</span>
+          </button>
+          <button type="button">
+            <strong>Coupons</strong>
+            <span id="walletCoupons">2</span>
+          </button>
+          <button type="button">
+            <strong>Tickets</strong>
+            <span id="walletTickets">0</span>
+          </button>
+        </div>
+
+        <div class="profile-menu" aria-label="Profile menu">
+          <button type="button"><span class="profile-menu-icon recommend-menu"></span>My recommendations</button>
+          <button type="button"><span class="profile-menu-icon bookmark-menu"></span>Saved spots</button>
+          <button type="button"><span class="profile-menu-icon bell-menu"></span>Message alerts</button>
+          <button type="button"><span class="profile-menu-icon notice-menu"></span>Notice</button>
+          <button type="button"><span class="profile-menu-icon help-menu"></span>Help</button>
+          <button type="button"><span class="profile-menu-icon info-menu"></span>About KR NIGHT</button>
+        </div>
+
+        <section class="profile-saved" aria-labelledby="savedTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Your night list</p>
+              <h2 id="savedTitle">Saved</h2>
+            </div>
+          </div>
+          <div class="empty-state" id="savedEmpty">
+            <p>No saved spots yet.</p>
+          </div>
+          <div class="venue-list" id="savedList"></div>
+        </section>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="nav-item active" type="button" data-screen="home">
+          <span class="nav-icon home-icon" aria-hidden="true"></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="social">
+          <span class="nav-icon social-icon" aria-hidden="true"></span>
+          <span>Social</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="hot">
+          <span class="nav-icon night-icon" aria-hidden="true"></span>
+          <span>Hot Now</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="game">
+          <span class="nav-icon game-icon" aria-hidden="true"></span>
+          <span>Game</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="profile">
+          <span class="nav-icon profile-icon" aria-hidden="true"></span>
+          <span>Profile</span>
+        </button>
+      </nav>
+    </main>
+
+    <dialog class="venue-modal" id="venueModal">
+      <div class="modal-top">
+        <button class="icon-button" type="button" id="closeModal" aria-label="Close"></button>
+        <button class="save-modal-button" type="button" id="modalSaveButton">Save</button>
+      </div>
+      <div class="modal-visual" id="modalVisual"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modalArea"></p>
+        <h2 id="modalName"></h2>
+        <p class="modal-copy" id="modalDescription"></p>
+        <div class="detail-grid">
+          <div>
+            <span>Music</span>
+            <strong id="modalMusic"></strong>
+          </div>
+          <div>
+            <span>Entry</span>
+            <strong id="modalEntry"></strong>
+          </div>
+          <div>
+            <span>Dress</span>
+            <strong id="modalDress"></strong>
+          </div>
+          <div>
+            <span>Foreigner</span>
+            <strong id="modalForeigner"></strong>
+          </div>
+        </div>
+        <section class="modal-section">
+          <h3>Tonight</h3>
+          <p id="modalTonight"></p>
+        </section>
+        <section class="modal-section">
+          <h3>Address</h3>
+          <p id="modalAddress"></p>
+          <div class="route-row" id="routeRow"></div>
+        </section>
+        <section class="modal-section">
+          <h3>Check-in</h3>
+          <p id="modalCheckinText">Use your KR NIGHT QR to check in at partner doors.</p>
+          <div class="modal-checkin-actions">
+            <button type="button" class="primary-button" id="modalCheckinButton">Check in</button>
+            <button type="button" class="secondary-button" id="modalPartnerButton">Partner view</button>
+          </div>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog class="login-modal" id="loginModal">
+      <form class="login-sheet" id="loginForm" method="dialog">
+        <div class="modal-top">
+          <button class="icon-button" type="button" id="closeLoginModal" aria-label="Close"></button>
+          <span class="coming-pill">Local beta</span>
+        </div>
+        <div class="login-copy">
+          <p class="eyebrow">Create your KR NIGHT account</p>
+          <h2>Pick a provider flow</h2>
+          <p>This local MVP stores your account in this browser now. Production social login needs real app keys and redirect setup.</p>
+        </div>
+        <div class="provider-grid" id="providerGrid">
+          <button type="button" class="provider-button active" data-provider="kakao">Kakao</button>
+          <button type="button" class="provider-button" data-provider="apple">Apple</button>
+          <button type="button" class="provider-button" data-provider="google">Google</button>
+          <button type="button" class="provider-button" data-provider="line">LINE</button>
+          <button type="button" class="provider-button" data-provider="naver">NAVER</button>
+        </div>
+        <label class="form-field">
+          <span>Display name</span>
+          <input type="text" id="displayNameInput" maxlength="24" placeholder="Mike" required />
+        </label>
+        <label class="form-field">
+          <span>User ID</span>
+          <input type="text" id="userIdInput" maxlength="18" placeholder="@mikehongdae" required />
+        </label>
+        <button type="submit" class="primary-button full-width">Save account</button>
+      </form>
+    </dialog>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>

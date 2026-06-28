@@ -1,0 +1,20 @@
+{
+  "name": "kr-night-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KR NIGHT mobile app shell powered by Capacitor.",
+  "scripts": {
+    "prepare:web": "node scripts/prepare-web.mjs",
+    "cap:copy": "pnpm run prepare:web && cap copy",
+    "cap:sync": "pnpm run prepare:web && cap sync",
+    "cap:add:ios": "node scripts/add-ios-spm.mjs",
+    "cap:open:ios": "pnpm run prepare:web && cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.4.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.1",
+    "@capacitor/ios": "^7.4.1"
+  }
+}
