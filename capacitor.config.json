@@ -1,8 +1,0 @@
-{
-  "appId": "com.krnight.app",
-  "appName": "KR NIGHT",
-  "webDir": "mobile-web",
-  "server": {
-    "androidScheme": "https"
-  }
-}
