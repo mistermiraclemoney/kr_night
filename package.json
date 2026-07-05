@@ -5,7 +5,7 @@
   "description": "KR NIGHT mobile app shell powered by Capacitor.",
   "scripts": {
     "build": "node scripts/prepare-web.mjs",
-    "start": "node server.js",
+    "start": "node --experimental-sqlite server.js",
     "prepare:web": "node scripts/prepare-web.mjs",
     "cap:copy": "npm run prepare:web && cap copy",
     "cap:sync": "npm run prepare:web && cap sync",
@@ -21,5 +21,8 @@
     "@capacitor/cli": "^7.4.1",
     "@capacitor/ios": "^7.4.1",
     "@capacitor/android": "^7.4.1"
+  },
+  "engines": {
+    "node": ">=22.5.0"
   }
 }
