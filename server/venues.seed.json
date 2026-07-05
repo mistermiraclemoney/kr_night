@@ -1,0 +1,440 @@
+[
+  {
+    "id": "club-ff",
+    "name": "Club FF",
+    "type": "club",
+    "area": "Hongdae",
+    "district": "Hongdae",
+    "address": "38 Wausan-ro 18-gil, Mapo-gu, Seoul",
+    "meta": "Live indie / Rock / Dance after bands",
+    "music": "Indie rock, alternative, DJ dance",
+    "entry": "KRW 10,000-20,000, verify at door",
+    "dress": "Casual",
+    "foreigner": "Foreigner friendly",
+    "tonight": "Verify lineup before posting; strong seed for live-music and Hongdae club routes.",
+    "description": "A long-running Hongdae live club known for indie bands first, then a louder dance crowd later in the night.",
+    "tags": [
+      "Hot",
+      "Live"
+    ],
+    "filterTags": [
+      "club"
+    ],
+    "mapCount": 132,
+    "viewers": 684,
+    "mapX": "24%",
+    "mapY": "36%",
+    "coords": [
+      37.5503,
+      126.9223
+    ],
+    "color": "linear-gradient(135deg, #ff1f8f, #19111f 52%, #05d9ff)"
+  },
+  {
+    "id": "the-henz-club",
+    "name": "The Henz Club",
+    "type": "club",
+    "area": "Hongdae",
+    "district": "Hongdae",
+    "address": "B1, 64 Wausan-ro, Mapo-gu, Seoul",
+    "meta": "Hip-hop / Trap / DJ crews",
+    "music": "Hip-hop, trap, bass",
+    "entry": "KRW 15,000-20,000, verify at door",
+    "dress": "Street casual",
+    "foreigner": "Passport recommended",
+    "tonight": "Good candidate for late Hongdae hip-hop nights; verify event posters before launch.",
+    "description": "A Hongdae club pick with a street-fashion crowd and DJ-led hip-hop or trap nights.",
+    "tags": [
+      "Hot",
+      "Club"
+    ],
+    "filterTags": [
+      "club"
+    ],
+    "mapCount": 132,
+    "viewers": 641,
+    "mapX": "27%",
+    "mapY": "38%",
+    "coords": [
+      37.5486,
+      126.9229
+    ],
+    "color": "linear-gradient(135deg, #05d9ff, #101013 54%, #ff1f8f)"
+  },
+  {
+    "id": "cakeshop",
+    "name": "Cakeshop",
+    "type": "club",
+    "area": "Itaewon",
+    "district": "Itaewon",
+    "address": "134 Itaewon-ro, Yongsan-gu, Seoul",
+    "meta": "Underground / Electronic / Basement club",
+    "music": "UK bass, techno, disco, hip-hop",
+    "entry": "Verify event page",
+    "dress": "Casual clean",
+    "foreigner": "Foreigner friendly",
+    "tonight": "Core Itaewon seed venue; check weekly lineup before featuring as a live event.",
+    "description": "A basement-style Itaewon club with an underground reputation and international nightlife audience.",
+    "tags": [
+      "Hot",
+      "DJ"
+    ],
+    "filterTags": [
+      "club"
+    ],
+    "mapCount": 118,
+    "viewers": 612,
+    "mapX": "40%",
+    "mapY": "47%",
+    "coords": [
+      37.5338,
+      126.9888
+    ],
+    "color": "linear-gradient(135deg, #05d9ff, #142342 58%, #ff1f8f)"
+  },
+  {
+    "id": "faust",
+    "name": "Faust",
+    "type": "club",
+    "area": "Itaewon",
+    "district": "Itaewon",
+    "address": "3F, 127-15 Itaewon, Yongsan-gu, Seoul",
+    "meta": "Electronic / House / Techno",
+    "music": "House, techno, electronic",
+    "entry": "Verify event page",
+    "dress": "No sandals",
+    "foreigner": "Passport recommended",
+    "tonight": "Strong electronic-music seed; only publish current DJ names after direct verification.",
+    "description": "A serious electronic-music stop in Itaewon for people who care about sound, DJs, and late floors.",
+    "tags": [
+      "DJ",
+      "Hot"
+    ],
+    "filterTags": [
+      "club"
+    ],
+    "mapCount": 118,
+    "viewers": 566,
+    "mapX": "42%",
+    "mapY": "47%",
+    "coords": [
+      37.5342,
+      126.9894
+    ],
+    "color": "linear-gradient(135deg, #ff1f8f, #231327 56%, #f5c76b)"
+  },
+  {
+    "id": "le-chamber",
+    "name": "Le Chamber",
+    "type": "bar",
+    "area": "Cheongdam",
+    "district": "Gangnam",
+    "address": "B1, 42 Dosan-daero 55-gil, Gangnam-gu, Seoul",
+    "meta": "Speakeasy / Cocktails / Premium",
+    "music": "Piano, lounge",
+    "entry": "Cocktails premium; reservation recommended",
+    "dress": "Smart casual",
+    "foreigner": "Friendly",
+    "tonight": "Use as a premium Gangnam pre-game or date-night route, not a club-coupon target yet.",
+    "description": "A high-end hidden speakeasy in Cheongdam, useful for KR NIGHT's premium bar and VIP positioning.",
+    "tags": [
+      "VIP",
+      "Bar"
+    ],
+    "filterTags": [
+      "bar",
+      "lounge"
+    ],
+    "mapCount": 84,
+    "viewers": 438,
+    "mapX": "63%",
+    "mapY": "66%",
+    "coords": [
+      37.5237,
+      127.0384
+    ],
+    "color": "linear-gradient(135deg, #f5c76b, #101013 50%, #ff1f8f)"
+  },
+  {
+    "id": "timber-house",
+    "name": "The Timber House",
+    "type": "bar",
+    "area": "Gangnam",
+    "district": "Gangnam",
+    "address": "606 Teheran-ro, Gangnam-gu, Seoul",
+    "meta": "Hotel bar / Live music / Cocktails",
+    "music": "Live vocals, jazz, lounge",
+    "entry": "Premium bar spend",
+    "dress": "Smart",
+    "foreigner": "Hotel friendly",
+    "tonight": "A calmer Gangnam late-night option for couples, business guests, and visitors.",
+    "description": "A polished hotel bar route for live music, cocktails, whisky, and a more grown-up Gangnam night.",
+    "tags": [
+      "Lounge",
+      "VIP"
+    ],
+    "filterTags": [
+      "bar",
+      "lounge"
+    ],
+    "mapCount": 84,
+    "viewers": 312,
+    "mapX": "61%",
+    "mapY": "82%",
+    "coords": [
+      37.5086,
+      127.0631
+    ],
+    "color": "linear-gradient(135deg, #62f7c8, #111116 50%, #f5c76b)"
+  },
+  {
+    "id": "times-apgu",
+    "name": "Times Apgujeong",
+    "type": "club",
+    "area": "Apgujeong",
+    "district": "Apgujeong",
+    "address": "25 Apgujeong-ro 54-gil, Gangnam-gu, Seoul",
+    "meta": "Hip-hop / House / Rodeo night",
+    "music": "Hip-hop, house, R&B",
+    "entry": "Around KRW 10,000, verify at door",
+    "dress": "Clean fit",
+    "foreigner": "Foreigners allowed",
+    "tonight": "A strong Apgujeong club seed; verify Naver/Instagram before pushing live status.",
+    "description": "A compact Apgujeong club candidate for users looking for hip-hop and house around Rodeo.",
+    "tags": [
+      "Hot",
+      "Club"
+    ],
+    "filterTags": [
+      "club"
+    ],
+    "mapCount": 76,
+    "viewers": 421,
+    "mapX": "64%",
+    "mapY": "62%",
+    "coords": [
+      37.5269,
+      127.0393
+    ],
+    "color": "linear-gradient(135deg, #ff1f8f, #111116 52%, #05d9ff)"
+  },
+  {
+    "id": "sahm-apgujeong",
+    "name": "SAHM",
+    "type": "bar",
+    "area": "Apgujeong",
+    "district": "Apgujeong",
+    "address": "5-6 Apgujeong-ro 46-gil, Gangnam-gu, Seoul",
+    "meta": "Cocktails / Whisky / Rodeo bar",
+    "music": "Cocktail bar, lounge",
+    "entry": "No cover; premium cocktails",
+    "dress": "Smart casual",
+    "foreigner": "Friendly",
+    "tonight": "Good Apgujeong starter or after spot before a club/louder lounge.",
+    "description": "A serious Apgujeong cocktail bar seed that gives KR NIGHT a premium but approachable Rodeo option.",
+    "tags": [
+      "VIP",
+      "Bar"
+    ],
+    "filterTags": [
+      "bar",
+      "lounge"
+    ],
+    "mapCount": 76,
+    "viewers": 388,
+    "mapX": "66%",
+    "mapY": "61%",
+    "coords": [
+      37.5247,
+      127.0398
+    ],
+    "color": "linear-gradient(135deg, #05d9ff, #12151a 58%, #ff1f8f)"
+  },
+  {
+    "id": "hanchu",
+    "name": "Hanchu",
+    "type": "bar",
+    "area": "Sinsa",
+    "district": "Sinsa",
+    "address": "Sinsa-dong 549-9, Gangnam-gu, Seoul",
+    "meta": "Hof / Chicken / Beer",
+    "music": "Casual Korean drinking spot",
+    "entry": "Free",
+    "dress": "Casual",
+    "foreigner": "Easy with map address",
+    "tonight": "Use as a local Sinsa starter before moving to Apgujeong or Gangnam.",
+    "description": "A Sinsa late-night hof-style food and beer stop, good for a local Korean drinking route.",
+    "tags": [
+      "Bar",
+      "Food"
+    ],
+    "filterTags": [
+      "bar"
+    ],
+    "mapCount": 58,
+    "viewers": 344,
+    "mapX": "58%",
+    "mapY": "63%",
+    "coords": [
+      37.5245,
+      127.0255
+    ],
+    "color": "linear-gradient(135deg, #f5c76b, #111116 56%, #05d9ff)"
+  },
+  {
+    "id": "cuckoo-sinsa",
+    "name": "Cuckoo",
+    "type": "bar",
+    "area": "Sinsa",
+    "district": "Sinsa",
+    "address": "4 Dosan-daero 17-gil, Gangnam-gu, Seoul",
+    "meta": "Pojangmacha vibe / Soju / Casual",
+    "music": "Loud casual bar energy",
+    "entry": "Free",
+    "dress": "Casual",
+    "foreigner": "Easy with map address",
+    "tonight": "A casual Garosugil-style stop for users who want local drinking instead of bottle service.",
+    "description": "A low-pressure Sinsa drinking spot candidate for soju, food, and noisy group energy.",
+    "tags": [
+      "Bar",
+      "Local"
+    ],
+    "filterTags": [
+      "bar"
+    ],
+    "mapCount": 58,
+    "viewers": 326,
+    "mapX": "56%",
+    "mapY": "61%",
+    "coords": [
+      37.5206,
+      127.0235
+    ],
+    "color": "linear-gradient(135deg, #ff1f8f, #101013 55%, #f5c76b)"
+  },
+  {
+    "id": "seoul-brewery-seongsu",
+    "name": "Seoul Brewery Seongsu",
+    "type": "bar",
+    "area": "Seongsu",
+    "district": "Seongsu",
+    "address": "28-12 Yeonmujang-gil, Seongdong-gu, Seoul",
+    "meta": "Craft beer / Rooftop / Multi-floor",
+    "music": "Craft beer, chill crowd",
+    "entry": "Free",
+    "dress": "Casual",
+    "foreigner": "Friendly",
+    "tonight": "Strong Seongsu starter stop; good for early evening before moving to louder areas.",
+    "description": "A big Seongsu craft-beer complex that fits the area's industrial, stylish, casual night identity.",
+    "tags": [
+      "Bar",
+      "New"
+    ],
+    "filterTags": [
+      "bar"
+    ],
+    "mapCount": 67,
+    "viewers": 372,
+    "mapX": "74%",
+    "mapY": "50%",
+    "coords": [
+      37.5445,
+      127.0557
+    ],
+    "color": "linear-gradient(135deg, #62f7c8, #12151a 58%, #05d9ff)"
+  },
+  {
+    "id": "italian-brewery-seongsu",
+    "name": "Italian Brewery Seongsu",
+    "type": "bar",
+    "area": "Seongsu",
+    "district": "Seongsu",
+    "address": "1F, 19-1 Wangsimniro 4-gil, Seongdong-gu, Seoul",
+    "meta": "Beer hall / Casual / Late drinks",
+    "music": "Beer hall, casual pub energy",
+    "entry": "Free",
+    "dress": "Casual",
+    "foreigner": "Easy with map address",
+    "tonight": "Use as a second Seongsu beer stop; verify Naver hours before publishing live.",
+    "description": "A Seongsu beer-hall seed for users who want a relaxed start near Seoul Forest and Ttukseom.",
+    "tags": [
+      "Bar",
+      "Route"
+    ],
+    "filterTags": [
+      "bar"
+    ],
+    "mapCount": 67,
+    "viewers": 288,
+    "mapX": "72%",
+    "mapY": "53%",
+    "coords": [
+      37.5455,
+      127.0546
+    ],
+    "color": "linear-gradient(135deg, #05d9ff, #111116 56%, #62f7c8)"
+  },
+  {
+    "id": "euljiro-nogari",
+    "name": "Euljiro Nogari Alley",
+    "type": "bar",
+    "area": "Euljiro",
+    "district": "Euljiro",
+    "address": "Eulji-ro 129, Jung-gu, Seoul",
+    "meta": "Beer alley / Retro / Street tables",
+    "music": "Local after-work energy",
+    "entry": "Free",
+    "dress": "Casual",
+    "foreigner": "Easy with map address",
+    "tonight": "Perfect KR NIGHT local route: beer, nogari, and retro Seoul atmosphere.",
+    "description": "A classic Euljiro beer alley where old Seoul, office-worker culture, and younger retro crowds overlap.",
+    "tags": [
+      "Hot",
+      "Local"
+    ],
+    "filterTags": [
+      "bar"
+    ],
+    "mapCount": 91,
+    "viewers": 514,
+    "mapX": "49%",
+    "mapY": "42%",
+    "coords": [
+      37.5665,
+      126.9915
+    ],
+    "color": "linear-gradient(135deg, #f5c76b, #17171f 55%, #ff1f8f)"
+  },
+  {
+    "id": "ace-four-club",
+    "name": "Ace 4 Club",
+    "type": "bar",
+    "area": "Euljiro",
+    "district": "Euljiro",
+    "address": "105 Eulji-ro, Jung-gu, Seoul",
+    "meta": "Cocktails / Wine / Hipjiro",
+    "music": "Cocktail bar, good music",
+    "entry": "Free",
+    "dress": "Casual smart",
+    "foreigner": "English friendly",
+    "tonight": "Good Euljiro cocktail stop after street beer or before a quieter second round.",
+    "description": "A cozy Euljiro cocktail and wine bar candidate for users who want Hipjiro mood without standing outside.",
+    "tags": [
+      "Bar",
+      "Lounge"
+    ],
+    "filterTags": [
+      "bar",
+      "lounge"
+    ],
+    "mapCount": 91,
+    "viewers": 462,
+    "mapX": "50%",
+    "mapY": "41%",
+    "coords": [
+      37.5658,
+      126.9908
+    ],
+    "color": "linear-gradient(135deg, #05d9ff, #101013 52%, #f5c76b)"
+  }
+]

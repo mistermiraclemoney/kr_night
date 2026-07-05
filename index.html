@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>KR NIGHT</title>
+    <meta
+      name="description"
+      content="KR NIGHT - Tonight in S. Korea. Clubs, bars, events, and coupons."
+    />
+    <meta name="theme-color" content="#050506" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="KR NIGHT" />
+    <link rel="apple-touch-icon" href="assets/kr-night-app-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      try {
+        if (localStorage.getItem("kr-theme") === "light") {
+          document.documentElement.classList.add("light-theme");
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen home-screen active" id="screen-home" aria-labelledby="homeTitle">
+        <header class="home-header">
+          <div class="home-searchbar">
+            <img src="assets/kr-night-app-icon.png" alt="KR NIGHT" />
+            <button class="home-search-pill" type="button" data-screen="hot">
+              <span aria-hidden="true"></span>
+              Search clubs, bars, areas
+            </button>
+            <button class="home-language-button" type="button" id="homeLanguageButton">EN</button>
+            <button class="home-clock-button" type="button" aria-label="Tonight history"></button>
+            <button class="home-bell-button" type="button" aria-label="Alerts"></button>
+          </div>
+          <div class="home-location-row">
+            <button type="button" data-screen="hot">
+              <span class="pin-dot" aria-hidden="true"></span>
+              Seoul
+            </button>
+            <button type="button" data-screen="hot">Near me</button>
+          </div>
+        </header>
+
+        <section class="home-spotlight" aria-label="KR NIGHT spotlight">
+          <button class="spotlight-card spotlight-primary" type="button" data-screen="hot">
+            <span>Tonight Pulse</span>
+            <strong>Where Korea goes out tonight.</strong>
+            <em>14 spots · 7 areas · Live map</em>
+          </button>
+          <button class="spotlight-card spotlight-hongdae" type="button" data-screen="hot">
+            <span>Hongdae is heating up</span>
+            <strong>The Henz → Club FF</strong>
+            <em>132 watching</em>
+          </button>
+          <button class="spotlight-card spotlight-itaewon" type="button" data-screen="hot">
+            <span>Itaewon after midnight</span>
+            <strong>Cakeshop → Faust</strong>
+            <em>118 watching</em>
+          </button>
+        </section>
+
+        <section class="home-action-grid" aria-label="KR NIGHT shortcuts">
+          <button type="button" data-screen="hot"><span class="shortcut-icon hot-shortcut"></span>Hot Now</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon route-shortcut"></span>Route</button>
+          <button type="button" data-screen="social"><span class="shortcut-icon social-shortcut"></span>Social</button>
+          <button type="button" data-screen="game"><span class="shortcut-icon game-shortcut"></span>Games</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon club-shortcut"></span>Clubs</button>
+          <button type="button" data-screen="hot"><span class="shortcut-icon bar-shortcut"></span>Bars</button>
+          <button type="button" data-screen="profile"><span class="shortcut-icon point-shortcut"></span>Points</button>
+          <button type="button" data-screen="profile"><span class="shortcut-icon guest-shortcut"></span>Guestlist</button>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeNewsTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Tonight news</p>
+              <h2 id="homeNewsTitle">Weekend signals</h2>
+            </div>
+            <button type="button" data-screen="hot">View all</button>
+          </div>
+          <div class="news-banner-row">
+            <button class="news-banner news-banner-main" type="button" data-screen="hot">
+              <span>Beta open</span>
+              <strong>Hongdae route is live tonight</strong>
+              <em>The Henz Club · Club FF · late food</em>
+            </button>
+            <button class="news-banner news-banner-alt" type="button" data-screen="hot">
+              <span>Coming soon</span>
+              <strong>First guestlist partners</strong>
+              <em>Partner spots will appear here</em>
+            </button>
+            <button class="news-banner news-banner-gold" type="button" data-screen="hot">
+              <span>Editor pick</span>
+              <strong>Itaewon underground weekend</strong>
+              <em>Cakeshop · Faust · late bars</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeAreaTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Tonight areas</p>
+              <h2 id="homeAreaTitle">Where to go?</h2>
+            </div>
+            <button type="button" data-screen="hot">Open map</button>
+          </div>
+          <div class="area-grid">
+            <button type="button" data-screen="hot"><span>132</span>Hongdae<em>Hot</em></button>
+            <button type="button" data-screen="hot"><span>118</span>Itaewon<em>Live</em></button>
+            <button type="button" data-screen="hot"><span>76</span>Apgujeong<em>Route</em></button>
+            <button type="button" data-screen="hot"><span>84</span>Gangnam<em>Late</em></button>
+            <button type="button" data-screen="hot"><span>67</span>Seongsu<em>Chill</em></button>
+            <button type="button" data-screen="hot"><span>91</span>Euljiro<em>Local</em></button>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeRouteTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Today's route</p>
+              <h2 id="homeRouteTitle">Hongdae Tonight</h2>
+            </div>
+            <button type="button" data-screen="hot">View spots</button>
+          </div>
+          <div class="route-card">
+            <div class="route-card-top">
+              <div>
+                <strong>Start easy. Dance late. End local.</strong>
+                <span>Recommended by KR NIGHT</span>
+              </div>
+              <span class="route-count">4 stops</span>
+            </div>
+            <div class="route-timeline">
+              <article>
+                <time>9:00 PM</time>
+                <div><h3>Casual drinks</h3><p>Warm up near Sangsu or Hongdae main street.</p></div>
+              </article>
+              <article>
+                <time>11:30 PM</time>
+                <div><h3>The Henz Club</h3><p>Hip-hop, trap, and a late street-fashion crowd.</p></div>
+              </article>
+              <article>
+                <time>1:30 AM</time>
+                <div><h3>Club FF</h3><p>Live club energy that turns louder later.</p></div>
+              </article>
+              <article>
+                <time>3:00 AM</time>
+                <div><h3>Late food</h3><p>Finish with food, beer, or a quieter second round.</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="homeStoresTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">KR picks</p>
+              <h2 id="homeStoresTitle">Recommended tonight</h2>
+            </div>
+            <button type="button" data-screen="hot">View all</button>
+          </div>
+          <div class="pick-grid">
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art cakeshop-art"></span>
+              <strong>Cakeshop</strong>
+              <em>4.8 · Underground · Itaewon</em>
+            </button>
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art henz-art"></span>
+              <strong>The Henz Club</strong>
+              <em>4.7 · Hip-hop · Hongdae</em>
+            </button>
+            <button class="pick-card" type="button" data-screen="hot">
+              <span class="pick-art chamber-art"></span>
+              <strong>Le Chamber</strong>
+              <em>4.8 · Cocktails · Gangnam</em>
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen social-screen" id="screen-social" aria-labelledby="socialTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow">Live lounge</p>
+            <h1 id="socialTitle">Social</h1>
+          </div>
+          <span class="coming-pill">Live</span>
+        </header>
+        <section class="lounge-hero" aria-labelledby="loungeTitle">
+          <div>
+            <p class="eyebrow" id="loungeHeroEyebrow">Checked in lounge</p>
+            <h2 id="loungeTitle">The Henz Club</h2>
+            <p id="loungeHeroMeta">Hongdae · 64 inside now</p>
+          </div>
+          <span class="lounge-live" id="loungeLivePill">Live</span>
+        </section>
+
+        <section class="lounge-status" aria-label="Lounge status">
+          <article>
+            <span id="loungeEnteredLabel">Entered</span>
+            <strong id="loungeEnteredValue">—</strong>
+          </article>
+          <article>
+            <span id="loungeExitLabel">Auto exit</span>
+            <strong id="loungeExitValue">—</strong>
+          </article>
+          <article>
+            <span id="loungePointsLabel">Points</span>
+            <strong id="loungePointsValue">—</strong>
+          </article>
+        </section>
+
+        <section class="friends-page" aria-labelledby="friendsTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Friends page</p>
+              <h2 id="friendsTitle">Tonight friends</h2>
+            </div>
+            <button type="button">Add</button>
+          </div>
+          <label class="friend-search">
+            <span>User ID search</span>
+            <div class="friend-search-row">
+              <input type="search" id="friendSearchInput" placeholder="Search @mike, @ana, @jin..." />
+              <button type="button" id="friendSearchButton">Find</button>
+            </div>
+          </label>
+          <div class="friend-search-results" id="friendSearchResults" aria-live="polite"></div>
+          <div class="friend-requests" id="friendRequests" aria-live="polite"></div>
+          <div class="friend-status-list" aria-label="Friend status">
+            <article>
+              <span class="friend-avatar">M</span>
+              <div>
+                <strong>Mike</strong>
+                <p>📍 Henz Club</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Mike">Chat</button>
+                <button type="button" data-friend-snap="Mike">Snap</button>
+              </div>
+            </article>
+            <article>
+              <span class="friend-avatar">A</span>
+              <div>
+                <strong>Ana</strong>
+                <p>📍 Cakeshop</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Ana">Chat</button>
+                <button type="button" data-friend-snap="Ana">Snap</button>
+              </div>
+            </article>
+            <article>
+              <span class="friend-avatar">J</span>
+              <div>
+                <strong>Jin</strong>
+                <p>Starting in Seongsu</p>
+              </div>
+              <div class="friend-actions">
+                <button type="button" data-friend-chat="Jin">Chat</button>
+                <button type="button" data-friend-snap="Jin">Snap</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="snap-row" aria-labelledby="snapTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Disappearing snaps</p>
+              <h2 id="snapTitle">Tonight only</h2>
+            </div>
+          </div>
+          <div class="snap-card-row">
+            <button type="button">
+              <span>12s</span>
+              <strong>Mike</strong>
+              <em>Henz floor check</em>
+            </button>
+            <button type="button">
+              <span>8s</span>
+              <strong>Ana</strong>
+              <em>Cakeshop line</em>
+            </button>
+            <button type="button">
+              <span>New</span>
+              <strong>You</strong>
+              <em>Send a snap</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="lounge-chat" aria-labelledby="chatTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Open room</p>
+              <h2 id="chatTitle">Henz Lounge</h2>
+            </div>
+            <button type="button" id="loungeLeaveButton">Leave</button>
+          </div>
+          <div class="chat-thread" aria-label="Lounge messages">
+            <article class="chat-bubble incoming">
+              <strong>Mike</strong>
+              <p>Anyone going upstairs after 1?</p>
+              <span>12:18 AM</span>
+            </article>
+            <article class="chat-bubble outgoing">
+              <strong>You</strong>
+              <p>Maybe Club FF after this.</p>
+              <span>12:20 AM</span>
+            </article>
+            <article class="chat-bubble incoming">
+              <strong>Ana</strong>
+              <p>DJ set is starting now.</p>
+              <span>12:21 AM</span>
+            </article>
+          </div>
+          <label class="chat-composer">
+            <span>Message the lounge</span>
+            <input type="text" placeholder="Say something..." />
+            <button type="button">Send</button>
+          </label>
+        </section>
+
+        <section class="home-section" aria-labelledby="nearbyLoungeTitle">
+          <div class="home-section-title">
+            <div>
+              <p class="eyebrow">Nearby lounges</p>
+              <h2 id="nearbyLoungeTitle">Join with check-in</h2>
+            </div>
+          </div>
+          <div class="lounge-list" id="nearbyLoungeList">
+            <button type="button">
+              <span class="lounge-art hongdae-lounge-art"></span>
+              <strong>Club FF</strong>
+              <em>Hongdae · 38 inside</em>
+            </button>
+            <button type="button">
+              <span class="lounge-art itaewon-lounge-art"></span>
+              <strong>Cakeshop</strong>
+              <em>Itaewon · 51 inside</em>
+            </button>
+            <button type="button">
+              <span class="lounge-art apgu-lounge-art"></span>
+              <strong>Times Apgujeong</strong>
+              <em>Apgujeong · 29 inside</em>
+            </button>
+          </div>
+        </section>
+
+        <section class="lounge-rules" aria-labelledby="loungeRulesTitle">
+          <p class="eyebrow">Lounge expires</p>
+          <h2 id="loungeRulesTitle">Night session rules</h2>
+          <div>
+            <span>Manual leave anytime</span>
+            <span>Auto clear after closing</span>
+            <span>Location check after exit</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen map-screen" id="screen-hot" aria-label="KR NIGHT Hot Now map">
+        <div class="map-canvas sheet-mid">
+          <div id="leafletMap" class="real-map" aria-label="Interactive Seoul map"></div>
+
+          <section class="map-search-panel" aria-label="Search and filters">
+            <label class="search">
+              <span aria-hidden="true"></span>
+              <input id="searchInput" type="search" placeholder="Where are you going tonight?" />
+            </label>
+            <div class="map-chip-row" role="tablist" aria-label="Nearby districts">
+              <button class="nearby-chip active" type="button" data-district="Seoul">All nearby</button>
+              <button class="nearby-chip" type="button" data-district="Seongsu">Seongsu</button>
+              <button class="nearby-chip" type="button" data-district="Hongdae">Hongdae</button>
+              <button class="nearby-chip" type="button" data-district="Itaewon">Itaewon</button>
+              <button class="nearby-chip" type="button" data-district="Apgujeong">Apgujeong</button>
+            </div>
+          </section>
+
+          <div class="map-markers" id="mapMarkers"></div>
+
+          <aside class="map-tools" aria-label="Map tools">
+            <button id="mapStyleButton" type="button" aria-label="Switch map style"></button>
+            <button id="mapLocateButton" type="button" aria-label="Center Seoul nightlife map"></button>
+          </aside>
+
+          <button class="nearby-focus-button" id="nearbyFocusButton" type="button">Near me</button>
+
+          <section class="map-bottom-sheet" aria-labelledby="mapSheetTitle">
+            <button class="sheet-handle" id="sheetHandle" type="button" aria-label="Show or hide nightlife list"></button>
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow" id="mapSheetEyebrow">Near you tonight</p>
+                <h2 id="mapSheetTitle">Nearby picks</h2>
+              </div>
+              <span class="live-dot">Verified</span>
+            </div>
+            <div class="filter-row sheet-filter-row" role="tablist" aria-label="Selected area filters">
+              <button class="filter-pill active" type="button" data-filter="all">All</button>
+              <button class="filter-pill" type="button" data-filter="club">Clubs</button>
+              <button class="filter-pill" type="button" data-filter="bar">Bars</button>
+              <button class="filter-pill" type="button" data-filter="lounge">Lounges</button>
+              <button class="filter-pill" type="button" data-filter="foreigner">Foreigner OK</button>
+            </div>
+            <div class="nearby-summary">
+              <span id="nearbySummaryLabel">Seongsu mock location</span>
+              <span>Updated around tonight</span>
+            </div>
+            <div class="venue-list compact" id="venueList"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="screen game-screen" id="screen-game" aria-labelledby="gameTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow" id="gameEyebrow">Party games</p>
+            <h1 id="gameTitle">Game</h1>
+          </div>
+          <span class="coming-pill" id="gamePill">Live</span>
+        </header>
+        <section class="game-hero">
+          <p class="eyebrow" id="gameHeroEyebrow">Play right now</p>
+          <h2 id="gameHeroTitle">Games that make the room less awkward.</h2>
+          <p id="gameHeroCopy">One phone is enough. Pass it around the table and play.</p>
+        </section>
+        <div class="game-grid" aria-label="Games">
+          <article class="game-card playable" data-game="bomb">
+            <span class="game-chip">💣</span>
+            <h3 id="gameBombTitle">Bomb Pass</h3>
+            <p id="gameBombCopy">Pass the phone. Whoever holds it when it blows, drinks.</p>
+            <span class="game-play-tag" id="gameBombTag">PLAY</span>
+          </article>
+          <article class="game-card playable" data-game="roulette">
+            <span class="game-chip">🎯</span>
+            <h3 id="gameRouletteTitle">Drink Roulette</h3>
+            <p id="gameRouletteCopy">Add names, spin the wheel — the winner buys the round.</p>
+            <span class="game-play-tag" id="gameRouletteTag">PLAY</span>
+          </article>
+          <article class="game-card playable" data-game="cards">
+            <span class="game-chip">🃏</span>
+            <h3 id="gameCardsTitle">Ice Break Cards</h3>
+            <p id="gameCardsCopy">Draw a question card. Answer or drink.</p>
+            <span class="game-play-tag" id="gameCardsTag">PLAY</span>
+          </article>
+          <article class="game-card locked" data-game="match">
+            <span class="game-chip">💜</span>
+            <h3 id="gameMatchTitle">Match Nearby</h3>
+            <p id="gameMatchCopy">Meet people checked into the same venue. Opens at partner venues.</p>
+            <span class="game-play-tag locked" id="gameMatchTag">SOON</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-coupons" aria-labelledby="couponsTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow">Benefits</p>
+            <h1>Coupons</h1>
+          </div>
+          <span class="coming-pill">Live</span>
+        </header>
+        <section class="coupon-hero">
+          <p class="eyebrow">Coming soon</p>
+          <h2>Guestlists and perks, soon.</h2>
+          <p>For now, KR NIGHT will show curated picks first. Real partner coupons come after store verification.</p>
+        </section>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KR NIGHT benefits</p>
+            <h2 id="couponsTitle">Coupons</h2>
+          </div>
+        </div>
+        <div class="coupon-list" id="couponList"></div>
+      </section>
+
+      <section class="screen" id="screen-events" aria-labelledby="eventsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DJs, parties, guestlists</p>
+            <h2 id="eventsTitle">Events</h2>
+          </div>
+        </div>
+        <div class="event-list" id="eventList"></div>
+      </section>
+
+      <section class="screen profile-screen" id="screen-profile" aria-labelledby="profileTitle">
+        <header class="profile-hero">
+          <div class="profile-person">
+            <button type="button" class="avatar-bubble" id="profileAvatarButton" aria-label="Edit profile">🌙</button>
+            <div>
+              <p class="eyebrow">Member profile</p>
+              <h1 id="profileTitle">Guest</h1>
+              <p class="profile-subline" id="profileUserId">@krguest</p>
+            </div>
+          </div>
+          <button type="button" class="save-modal-button" id="profileTierButton">Free</button>
+        </header>
+
+        <section class="account-panel" aria-labelledby="accountPanelTitle">
+          <div class="account-panel-copy">
+            <p class="eyebrow">Account</p>
+            <h2 id="accountPanelTitle">Ready for real check-in</h2>
+            <p id="authStatusText">Create a local beta account now. Real Kakao, Apple, Google, LINE, and NAVER login can be connected later with production keys.</p>
+          </div>
+          <div class="account-panel-actions">
+            <button type="button" class="primary-button" id="openLoginButton">Create account</button>
+            <label class="share-toggle">
+              <input type="checkbox" id="locationShareToggle" />
+              <span>Share my live venue with friends</span>
+            </label>
+            <button type="button" class="server-status-line" id="serverStatusLine">Server: checking…</button>
+            <button type="button" class="server-status-line" id="logoutButton" hidden>Log out</button>
+          </div>
+        </section>
+
+        <section class="checked-in-panel" aria-labelledby="checkinStatusTitle">
+          <div>
+            <p class="eyebrow">Tonight status</p>
+            <h2 id="checkinStatusTitle">Not checked in</h2>
+            <p id="checkinStatusMeta">Open a venue and use the QR check-in flow to activate lounge access and points.</p>
+          </div>
+          <button type="button" class="secondary-button" id="leaveVenueButton">Leave venue</button>
+        </section>
+
+        <section class="membership-pass" aria-labelledby="membershipTitle">
+          <div class="membership-copy">
+            <p class="eyebrow">KR NIGHT membership</p>
+            <h2 id="membershipTitle">Entry QR Pass</h2>
+            <p>Scan this at partner doors to check in, join the lounge, and collect Night Points.</p>
+            <div class="membership-tags" aria-label="Membership benefits">
+              <span>Door check-in</span>
+              <span>Auto lounge</span>
+              <span>Point earn</span>
+            </div>
+          </div>
+          <div class="qr-card" aria-label="Member QR pass">
+            <button type="button" class="qr-cover" id="qrRevealButton">
+              <span class="qr-cover-icon" aria-hidden="true">🎟️</span>
+              <strong id="qrCoverTitle">Tap to show QR</strong>
+              <em id="qrCoverMeta">Valid for 90 seconds</em>
+            </button>
+            <div class="qr-revealed" id="qrRevealed" hidden>
+              <canvas class="qr-canvas" id="qrCanvas" width="220" height="220" aria-hidden="true"></canvas>
+              <strong id="profileQrValue"></strong>
+              <p class="qr-manual-code" id="qrManualCode"></p>
+              <div class="qr-countdown" aria-hidden="true"><div class="qr-countdown-fill" id="qrCountdownFill"></div></div>
+              <em id="profileQrMeta"></em>
+            </div>
+          </div>
+        </section>
+
+        <section class="language-panel" aria-labelledby="languagePanelTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Language</p>
+              <h2 id="languagePanelTitle">App language</h2>
+            </div>
+          </div>
+          <div class="language-switcher" role="tablist" aria-label="App language">
+            <button type="button" class="language-chip active" data-language="en">EN</button>
+            <button type="button" class="language-chip" data-language="ko">KO</button>
+            <button type="button" class="language-chip" data-language="ja">JA</button>
+            <button type="button" class="language-chip" data-language="zh">中文</button>
+          </div>
+        </section>
+
+        <section class="language-panel" aria-labelledby="appearanceTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="appearanceEyebrow">Appearance</p>
+              <h2 id="appearanceTitle">Theme</h2>
+            </div>
+          </div>
+          <div class="language-switcher" role="tablist" aria-label="App theme">
+            <button type="button" class="language-chip active" data-theme-choice="dark" id="themeDarkChip">Dark</button>
+            <button type="button" class="language-chip" data-theme-choice="light" id="themeLightChip">Light</button>
+          </div>
+        </section>
+
+        <section class="vip-lane" aria-labelledby="vipLaneTitle">
+          <div>
+            <p class="eyebrow">VIP</p>
+            <h2 id="vipLaneTitle">KR NIGHT VIP</h2>
+            <p id="vipCopy">Priority entry at partner doors, double Night Points, and members-only events.</p>
+            <p class="vip-status" id="vipStatus" hidden></p>
+          </div>
+          <button type="button" class="primary-button vip-button" id="vipButton">₩6,900/mo</button>
+        </section>
+
+        <div class="profile-wallet">
+          <button type="button">
+            <strong>Pass Credit</strong>
+            <span id="walletPassCredit">0</span>
+          </button>
+          <button type="button">
+            <strong>Night Points</strong>
+            <span id="walletNightPoints">100</span>
+          </button>
+          <button type="button">
+            <strong>Coupons</strong>
+            <span id="walletCoupons">2</span>
+          </button>
+          <button type="button">
+            <strong>Tickets</strong>
+            <span id="walletTickets">0</span>
+          </button>
+        </div>
+
+        <section class="owner-entry" aria-labelledby="ownerEntryTitle">
+          <div>
+            <p class="eyebrow" id="ownerEntryEyebrow">For venues</p>
+            <h2 id="ownerEntryTitle">Partner Console</h2>
+            <p id="ownerEntryCopy">Manage your venue, scan guest QR passes, see real check-in data, and subscribe to a plan.</p>
+          </div>
+          <button type="button" class="primary-button" id="openOwnerButton">Open</button>
+        </section>
+
+        <div class="profile-menu" aria-label="Profile menu">
+          <button type="button"><span class="profile-menu-icon recommend-menu"></span>My recommendations</button>
+          <button type="button"><span class="profile-menu-icon bookmark-menu"></span>Saved spots</button>
+          <button type="button"><span class="profile-menu-icon bell-menu"></span>Message alerts</button>
+          <button type="button"><span class="profile-menu-icon notice-menu"></span>Notice</button>
+          <button type="button"><span class="profile-menu-icon help-menu"></span>Help</button>
+          <button type="button"><span class="profile-menu-icon info-menu"></span>About KR NIGHT</button>
+        </div>
+
+        <section class="profile-saved" aria-labelledby="savedTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Your night list</p>
+              <h2 id="savedTitle">Saved</h2>
+            </div>
+          </div>
+          <div class="empty-state" id="savedEmpty">
+            <p>No saved spots yet.</p>
+          </div>
+          <div class="venue-list" id="savedList"></div>
+        </section>
+      </section>
+
+      <section class="screen owner-screen" id="screen-owner" aria-labelledby="ownerTitle">
+        <header class="screen-header compact-header">
+          <div>
+            <p class="eyebrow" id="ownerEyebrow">KR NIGHT for venues</p>
+            <h1 id="ownerTitle">Partner Console</h1>
+          </div>
+          <button type="button" class="save-modal-button" data-screen="profile" id="ownerBackButton">Close</button>
+        </header>
+
+        <section class="owner-login-hint" id="ownerLoginHint" hidden>
+          <p id="ownerLoginHintText">Sign in first to manage a venue.</p>
+          <button type="button" class="primary-button" id="ownerLoginButton">Sign in</button>
+        </section>
+
+        <section class="owner-venues" id="ownerVenuesPanel" aria-labelledby="ownerVenuesTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="ownerVenuesEyebrow">Your venues</p>
+              <h2 id="ownerVenuesTitle">Managed venues</h2>
+            </div>
+          </div>
+          <div class="owner-venue-list" id="ownerVenueList"></div>
+          <div class="owner-claim-row">
+            <label class="form-field">
+              <span id="ownerClaimLabel">Claim an existing listing</span>
+              <div class="friend-search-row">
+                <select id="ownerClaimSelect"></select>
+                <button type="button" id="ownerClaimButton">Claim</button>
+              </div>
+            </label>
+            <label class="form-field">
+              <span id="ownerClaimCodeLabel">Claim code (from KR NIGHT)</span>
+              <input type="text" id="ownerClaimCode" maxlength="12" placeholder="A1B2C3D4" autocomplete="off" />
+            </label>
+            <p class="provider-note" id="ownerClaimNote">KR NIGHT gives each venue's claim code to its owner directly — this stops strangers from taking over your listing.</p>
+          </div>
+          <details class="owner-create">
+            <summary id="ownerCreateSummary">Register a new venue</summary>
+            <form id="ownerCreateForm">
+              <label class="form-field"><span id="ncName">Venue name</span><input type="text" id="newVenueName" maxlength="60" required /></label>
+              <div class="owner-form-grid">
+                <label class="form-field"><span id="ncArea">Area</span><input type="text" id="newVenueArea" maxlength="30" placeholder="Itaewon" required /></label>
+                <label class="form-field"><span id="ncType">Type</span>
+                  <select id="newVenueType">
+                    <option value="club">Club</option>
+                    <option value="bar">Bar</option>
+                    <option value="lounge">Lounge</option>
+                  </select>
+                </label>
+              </div>
+              <label class="form-field"><span id="ncAddress">Address</span><input type="text" id="newVenueAddress" maxlength="120" /></label>
+              <label class="form-field"><span id="ncMusic">Music / vibe</span><input type="text" id="newVenueMusic" maxlength="80" placeholder="Hip-hop, house" /></label>
+              <button type="submit" class="primary-button full-width" id="ownerCreateSubmit">Create venue page</button>
+            </form>
+          </details>
+        </section>
+
+        <section class="owner-dashboard" id="ownerDashboard" hidden aria-labelledby="ownerDashTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="ownerDashEyebrow">Live performance</p>
+              <h2 id="ownerDashTitle">Dashboard</h2>
+            </div>
+            <button type="button" id="ownerRefreshButton">Refresh</button>
+          </div>
+          <div class="owner-stat-grid" id="ownerStatGrid"></div>
+          <div class="owner-recent" id="ownerRecentPanel">
+            <h3 id="ownerRecentTitle">Recent check-ins</h3>
+            <div id="ownerRecentList"></div>
+          </div>
+        </section>
+
+        <section class="owner-manage" id="ownerManagePanel" hidden aria-labelledby="ownerManageTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="ownerManageEyebrow">Venue page</p>
+              <h2 id="ownerManageTitle">Manage venue</h2>
+            </div>
+          </div>
+
+          <details class="owner-create" id="ownerDetailsBlock">
+            <summary id="ownerDetailsSummary">Edit venue details</summary>
+            <form id="ownerDetailsForm">
+              <label class="form-field"><span id="odName">Venue name</span><input type="text" id="editVenueName" maxlength="60" /></label>
+              <label class="form-field"><span id="odAddress">Address</span><input type="text" id="editVenueAddress" maxlength="120" /></label>
+              <div class="owner-form-grid">
+                <label class="form-field"><span id="odEntry">Entry / price</span><input type="text" id="editVenueEntry" maxlength="80" /></label>
+                <label class="form-field"><span id="odDress">Dress code</span><input type="text" id="editVenueDress" maxlength="60" /></label>
+              </div>
+              <label class="form-field"><span id="odMusic">Music / vibe</span><input type="text" id="editVenueMusic" maxlength="120" /></label>
+              <label class="form-field"><span id="odForeigner">Foreigner info</span><input type="text" id="editVenueForeigner" maxlength="80" /></label>
+              <label class="form-field"><span id="odTonight">Tonight (one-line status)</span><input type="text" id="editVenueTonight" maxlength="200" /></label>
+              <label class="form-field"><span id="odDescription">Description</span><textarea id="editVenueDescription" maxlength="300" rows="3"></textarea></label>
+              <label class="form-field"><span id="odImage">Photo URL (https)</span><input type="url" id="editVenueImage" maxlength="300" placeholder="https://…/photo.jpg" /></label>
+              <button type="submit" class="primary-button full-width" id="ownerDetailsSubmit">Save details</button>
+              <p class="pin-sent-note" id="ownerDetailsSaved" hidden></p>
+            </form>
+          </details>
+
+          <details class="owner-create" id="ownerEventsBlock">
+            <summary id="ownerEventsSummary">Events &amp; lineups</summary>
+            <div class="owner-item-list" id="ownerEventList"></div>
+            <form id="ownerEventForm">
+              <label class="form-field"><span id="oeTitle">Event title</span><input type="text" id="newEventTitle" maxlength="80" placeholder="Friday Hip-hop Night" /></label>
+              <div class="owner-form-grid">
+                <label class="form-field"><span id="oeDate">When</span><input type="text" id="newEventDate" maxlength="40" placeholder="Fri 11PM" /></label>
+                <label class="form-field"><span id="oeEntry">Entry</span><input type="text" id="newEventEntry" maxlength="60" placeholder="₩20,000" /></label>
+              </div>
+              <label class="form-field"><span id="oeLineup">Lineup / DJs</span><input type="text" id="newEventLineup" maxlength="120" placeholder="DJ A, DJ B" /></label>
+              <button type="submit" class="primary-button full-width" id="ownerEventSubmit">Add event</button>
+            </form>
+          </details>
+
+          <details class="owner-create" id="ownerCouponsBlock">
+            <summary id="ownerCouponsSummary">Coupons &amp; perks</summary>
+            <div class="owner-item-list" id="ownerCouponList"></div>
+            <form id="ownerCouponForm">
+              <label class="form-field"><span id="ocTitle">Coupon title</span><input type="text" id="newCouponTitle" maxlength="60" placeholder="Welcome drink" /></label>
+              <label class="form-field"><span id="ocDesc">How to use</span><input type="text" id="newCouponDesc" maxlength="160" placeholder="Show your check-in at the bar" /></label>
+              <label class="form-field"><span id="ocCost">Night Points cost (0 = free)</span><input type="number" id="newCouponCost" min="0" max="100000" value="0" /></label>
+              <button type="submit" class="primary-button full-width" id="ownerCouponSubmit">Add coupon</button>
+            </form>
+          </details>
+        </section>
+
+        <section class="owner-scanner" id="ownerScannerPanel" hidden aria-labelledby="ownerScanTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="ownerScanEyebrow">Door check-in</p>
+              <h2 id="ownerScanTitle">Scan guest QR</h2>
+            </div>
+          </div>
+          <div class="scanner-stage" id="scannerStage">
+            <video id="scannerVideo" playsinline muted hidden></video>
+            <button type="button" class="primary-button" id="startScanButton">Start camera scan</button>
+            <button type="button" class="secondary-button" id="stopScanButton" hidden>Stop camera</button>
+            <p class="scanner-hint" id="scannerHint">Camera scanning uses this device. If the camera is unavailable, enter the guest ID and the 6-digit code shown under their QR.</p>
+          </div>
+          <form class="manual-scan-form" id="manualScanForm">
+            <div class="owner-form-grid">
+              <label class="form-field"><span id="msHandle">Guest ID</span><input type="text" id="manualHandleInput" placeholder="@mina" maxlength="20" /></label>
+              <label class="form-field"><span id="msCode">6-digit code</span><input type="text" inputmode="numeric" id="manualCodeInput" placeholder="123456" maxlength="6" /></label>
+            </div>
+            <button type="submit" class="primary-button full-width" id="manualScanSubmit">Confirm check-in</button>
+          </form>
+          <div class="scan-result" id="scanResult" aria-live="polite"></div>
+        </section>
+
+        <section class="owner-plans" id="ownerPlansPanel" aria-labelledby="ownerPlansTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" id="ownerPlansEyebrow">Partner plans</p>
+              <h2 id="ownerPlansTitle">Subscribe in the app</h2>
+            </div>
+          </div>
+          <p class="owner-plans-note" id="ownerPlansNote">Pilot pricing. Subscriptions activate now and are settled by monthly invoice; card billing connects before public launch.</p>
+          <div class="plan-grid" id="planGrid"></div>
+          <div class="subscription-status" id="subscriptionStatus" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="nav-item active" type="button" data-screen="home">
+          <span class="nav-icon home-icon" aria-hidden="true"></span>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="social">
+          <span class="nav-icon social-icon" aria-hidden="true"></span>
+          <span>Social</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="hot">
+          <span class="nav-icon night-icon" aria-hidden="true"></span>
+          <span>Hot Now</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="game">
+          <span class="nav-icon game-icon" aria-hidden="true"></span>
+          <span>Game</span>
+        </button>
+        <button class="nav-item" type="button" data-screen="profile">
+          <span class="nav-icon profile-icon" aria-hidden="true"></span>
+          <span>Profile</span>
+        </button>
+      </nav>
+    </main>
+
+    <dialog class="venue-modal" id="venueModal">
+      <div class="modal-top">
+        <button class="icon-button" type="button" id="closeModal" aria-label="Close"></button>
+        <button class="save-modal-button" type="button" id="modalSaveButton">Save</button>
+      </div>
+      <div class="modal-visual" id="modalVisual"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modalArea"></p>
+        <h2 id="modalName"></h2>
+        <p class="modal-copy" id="modalDescription"></p>
+        <div class="detail-grid">
+          <div>
+            <span>Music</span>
+            <strong id="modalMusic"></strong>
+          </div>
+          <div>
+            <span>Entry</span>
+            <strong id="modalEntry"></strong>
+          </div>
+          <div>
+            <span>Dress</span>
+            <strong id="modalDress"></strong>
+          </div>
+          <div>
+            <span>Foreigner</span>
+            <strong id="modalForeigner"></strong>
+          </div>
+        </div>
+        <section class="modal-section">
+          <h3>Tonight</h3>
+          <p id="modalTonight"></p>
+          <div id="modalEventList"></div>
+        </section>
+        <section class="modal-section">
+          <h3>Address</h3>
+          <p id="modalAddress"></p>
+          <div class="route-row" id="routeRow"></div>
+        </section>
+        <section class="modal-section" id="modalCouponSection" hidden>
+          <h3 id="modalCouponHeading">Coupons</h3>
+          <div id="modalCouponList"></div>
+        </section>
+        <section class="modal-section">
+          <h3>Check-in</h3>
+          <p id="modalCheckinText">Use your KR NIGHT QR to check in at partner doors.</p>
+          <div class="modal-checkin-actions">
+            <button type="button" class="primary-button" id="modalCheckinButton">Check in</button>
+            <button type="button" class="secondary-button" id="modalPartnerButton">Partner view</button>
+          </div>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog class="login-modal" id="loginModal">
+      <form class="login-sheet" id="loginForm" method="dialog">
+        <div class="modal-top">
+          <button class="icon-button" type="button" id="closeLoginModal" aria-label="Close"></button>
+          <span class="coming-pill" id="loginModePill">KR NIGHT</span>
+        </div>
+        <div class="login-copy">
+          <p class="eyebrow" id="loginEyebrow">Create your KR NIGHT account</p>
+          <h2 id="loginHeading">Join tonight</h2>
+          <p id="loginIntro">One account for check-ins, points, lounges, and friends.</p>
+        </div>
+        <div class="auth-mode-row" id="authModeRow">
+          <button type="button" class="auth-mode active" data-auth-mode="register">Sign up</button>
+          <button type="button" class="auth-mode" data-auth-mode="login">Sign in</button>
+        </div>
+        <div class="provider-grid providers-coming-soon" id="providerGrid">
+          <button type="button" class="provider-button" data-provider="kakao" disabled>Kakao</button>
+          <button type="button" class="provider-button" data-provider="apple" disabled>Apple</button>
+          <button type="button" class="provider-button" data-provider="google" disabled>Google</button>
+          <button type="button" class="provider-button" data-provider="line" disabled>LINE</button>
+          <button type="button" class="provider-button" data-provider="naver" disabled>NAVER</button>
+        </div>
+        <p class="provider-note" id="providerNote">Social sign-in connects here once production keys are configured. Use email + password for the pilot.</p>
+
+        <div class="signup-steps" id="signupSteps" aria-hidden="true">
+          <span class="signup-step-dot active" data-step-dot="1"></span>
+          <span class="signup-step-dot" data-step-dot="2"></span>
+          <span class="signup-step-dot" data-step-dot="3"></span>
+        </div>
+
+        <!-- sign-up step 1: email -->
+        <div data-signup-step="1">
+          <label class="form-field">
+            <span id="emailLabel">Email</span>
+            <input type="email" id="emailInput" maxlength="80" placeholder="you@example.com" autocomplete="email" />
+          </label>
+          <button type="button" class="primary-button full-width" id="sendCodeButton">Send verification code</button>
+        </div>
+
+        <!-- sign-up step 2: PIN -->
+        <div data-signup-step="2" hidden>
+          <p class="pin-sent-note" id="pinSentNote"></p>
+          <label class="form-field">
+            <span id="pinLabel">6-digit code</span>
+            <input type="text" inputmode="numeric" id="pinInput" maxlength="6" placeholder="123456" autocomplete="one-time-code" />
+          </label>
+          <p class="dev-pin-note" id="devPinNote" hidden></p>
+          <button type="button" class="primary-button full-width" id="verifyCodeButton">Verify code</button>
+          <button type="button" class="text-button" id="resendCodeButton">Resend code</button>
+        </div>
+
+        <!-- sign-up step 3: profile / also used by sign-in -->
+        <div data-signup-step="3" hidden>
+          <label class="form-field" data-auth-field="register">
+            <span>Display name</span>
+            <input type="text" id="displayNameInput" maxlength="24" placeholder="Mike" autocomplete="nickname" />
+          </label>
+          <label class="form-field">
+            <span>User ID</span>
+            <input type="text" id="userIdInput" maxlength="20" placeholder="@mikehongdae" autocomplete="username" />
+          </label>
+          <label class="form-field">
+            <span>Password</span>
+            <input type="password" id="passwordInput" maxlength="60" placeholder="6+ characters" autocomplete="current-password" />
+          </label>
+          <button type="submit" class="primary-button full-width" id="authSubmitButton">Create account</button>
+        </div>
+
+        <p class="auth-error" id="authError" role="alert" hidden></p>
+        <button type="button" class="secondary-button full-width" id="guestLoginButton">Continue as guest</button>
+      </form>
+    </dialog>
+
+    <script src="vendor/leaflet/leaflet.js"></script>
+    <dialog class="login-modal" id="editProfileModal">
+      <form class="login-sheet" id="editProfileForm" method="dialog">
+        <div class="modal-top">
+          <button class="icon-button" type="button" id="closeEditProfile" aria-label="Close"></button>
+          <span class="coming-pill">KR NIGHT</span>
+        </div>
+        <div class="login-copy">
+          <p class="eyebrow" id="editProfileEyebrow">Profile</p>
+          <h2 id="editProfileHeading">Edit profile</h2>
+        </div>
+        <p class="form-label" id="avatarPickLabel">Avatar</p>
+        <div class="avatar-grid" id="avatarGrid"></div>
+        <label class="form-field">
+          <span id="editNameLabel">Display name</span>
+          <input type="text" id="editDisplayNameInput" maxlength="24" autocomplete="nickname" />
+        </label>
+        <label class="form-field">
+          <span id="editHandleLabel">User ID</span>
+          <input type="text" id="editHandleInput" maxlength="20" autocomplete="username" />
+        </label>
+        <p class="auth-error" id="editProfileError" role="alert" hidden></p>
+        <button type="submit" class="primary-button full-width" id="editProfileSubmit">Save profile</button>
+      </form>
+    </dialog>
+
+    <div class="game-overlay" id="gameOverlay" hidden>
+      <div class="game-overlay-top">
+        <button type="button" class="icon-button" id="gameCloseButton" aria-label="Close game"></button>
+        <strong id="gameOverlayTitle"></strong>
+        <span></span>
+      </div>
+      <div class="game-stage" id="gameStage"></div>
+    </div>
+
+    <script src="vendor/qrcode.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+    <script src="owner.js"></script>
+    <script src="games.js"></script>
+  </body>
+</html>
